@@ -21,86 +21,42 @@ def run_query(query, db):
 
 # Define a query map
 QUERY_MAP = {
-    'number_of_offers': 'SELECT COUNT (*) FROM offers;',
-    'models_of_cars': 'SELECT model FROM offers GROUP BY model;',
-    'count_models_of_cars': 'SELECT COUNT (model) FROM offers GROUP BY model;'
-}
+    'ilosc_ofert': 'SELECT COUNT (*) FROM oferty_wakacyjne WHERE tresc_oferty LIKE "%piaszczyst%" AND tresc_oferty LIKE "%plaza%" AND tresc_oferty LIKE "%brodzik%";',
+    'dane_ofert': 'SELECT html FROM oferty_wakacyjne WHERE tresc_oferty LIKE "%piaszczyst%" AND tresc_oferty LIKE "%plaza%" AND tresc_oferty LIKE "%brodzik%";',
+    }
 
 # Define a database path
 dirname = os.path.dirname(__file__)
 db_name = 'offers.db'
 path_to_db = os.path.join(dirname, db_name)
 
-# Function to get general statistics - number of offers
-def general_statistics():
-    # Get numbers of offers from the database
-    number_of_offers = run_query(QUERY_MAP['number_of_offers'], path_to_db)
-    print('Number of offers in the database: ' + str(number_of_offers))
+ilosc_ofert = run_query(QUERY_MAP['ilosc_ofert'], path_to_db)
 
-# Function to get general statistics - number of offers divided by models
-def statistics_offers_divided_by_models():
-    # Get number of offers divided by models
-    models_of_cars = run_query(QUERY_MAP['models_of_cars'], path_to_db)
-    count_models_of_cars = run_query(QUERY_MAP['count_models_of_cars'], path_to_db)
+def dane_ofert():
+    ilosc_ofert = run_query(QUERY_MAP['ilosc_ofert'], path_to_db)
+    dane_ofert = run_query(QUERY_MAP['dane_ofert'], path_to_db)
+    print('ilosc_ofert: ' + str(ilosc_ofert))
+    print('dane_ofert: ' + str(dane_ofert))
 
-    for model_of_car in models_of_cars:
-        idx = models_of_cars.index(model_of_car)
-        print('There is/are ' + f'{count_models_of_cars[idx]}' + ' offer(s) of car - model: ' + f'{model_of_car}')
-
-# Function to get minimum and maximum price and minimum and maximum course
-def min_max():
-    min_price_value = session.query(func.min(Offer.price)).one()
-    print('Mix price:', min_price_value[0])
-
-    max_price_value = session.query(func.max(Offer.price)).one()
-    print('Max price:', max_price_value[0])
-
-    min_course = session.query(func.min(Offer.course)).one()
-    print('Mix course:', min_course[0])
-
-    max_course = session.query(func.max(Offer.course)).one()
-    print('Max course:', max_course[0])
+# Key words:
+slowa_klucz = ['brodzik', 'piaszczysta plaza', 'plac zabaw', 'kacik dla dzieci', 'menu dla dzieci', 'animacje dla dzieci']
 
 # Create a menu representing available options
 def menu():
     while True:
         user_choice = input('''
-        What would you like to do now? 
-        Please input one of the following options:         
-        1 - show statistics,
-        2 - show min/max price and min/max course
-        3 - quit  
+        Wybierz jedna z ponizszych opcji:         
+        1 - pokaz dane ofert 
+        2 - zakoncz program
         ''')
-
         if user_choice == "1":
-            deeper_user_choice = input(''' 
-            Which statistics are you interested in? 
-            Please input one of the following options:         
-            1 - number of offers
-            2 - number of offers divided into models
-            3 - go back to the previous menu  
-            
-            ''')
-            if deeper_user_choice == "1":
-                general_statistics()
-            elif deeper_user_choice == "2":
-                statistics_offers_divided_by_models()
-            elif user_choice == "3":
-                return
+            dane_ofert()
         elif user_choice == "2":
-            min_max()
-        elif user_choice == "3":
             return
         else:
-            print("You have inputted incorrect value.")
+            print("Wybierz jeszcze raz odpowiedni numer opcji.")
     return
 
 # Run menu
 menu()
 
-# brodziki,
-# piaszczysta plaza
-# plac zabaw
-# kącik dla dzieci
-# menu dla dzieci
-# animacja dla dzieci

@@ -27,28 +27,31 @@ def get_details(_data):
 
     # Search for required data
 
-    # # Search for offer_id
-    # filtered = selector.css('.trip-code-oas::text').get()
-    # print("id_oferty : ", filtered)
-    # offers_data['id_oferty'] = filtered
+    # Search for offer_id
+    filtered = selector.xpath('//*[@id="offer--searcher"]/div[3]/header/div/div[1]/div/small/text()[2]').get()
+    print("id_oferty : ", filtered)
+    offers_data['id_oferty'] = filtered
 
     # Search for location
-    # filtered = selector.css('.breadcrumb-of > .br-item ::text').get()
-    filtered = selector.css('span.br-item:nth-child(1)::text').get()
-    print(filtered)
-    # filtered = ''.join(filtered)
-    print("lokalizacja : " + str(filtered))
-    offers_data['lokalizacja'] = str(filtered)
+    filtered = selector.xpath('/html/body/div[1]/div[1]/header/nav/span[2]/text()').get()
+    filtered = filtered.strip()
+    print("lokalizacja : " + filtered)
+    offers_data['lokalizacja'] = filtered
 
     # Search for title
     filtered = selector.css('head > title:nth-child(19)::text').get()
     print("tytul : " + filtered)
     offers_data['tytul'] = filtered
 
-    # # Search for price
-    # filtered = selector.css('.trip-price-oas').get()
-    # print("cena : " + filtered)
-    # offers_data['cena'] = filtered
+    # Search for price per person
+    filtered = selector.xpath('//*[@id="gnc--ttip--toggle"]/text()[2]').get()
+    print("cena_za_osobe : " + filtered)
+    offers_data['cena_za_osobe'] = filtered
+
+    # Search for total price
+    filtered = selector.xpath('//*[@id="offer--searcher"]/div[3]/div[2]/div[2]/div[2]/div[1]/div[2]/span/text()[1]').get()
+    print("cena_za_calosc : " + filtered)
+    offers_data['cena_za_calosc'] = filtered
 
     # Search for html
     # filtered = selector.css('.canonical::attr(href)').get()
@@ -61,7 +64,7 @@ def get_details(_data):
     filtered_string = str(filtered)
 
     # Search for offer text
-    offers_data['text'] = filtered_string
+    offers_data['tresc_oferty'] = filtered_string
 
 # Create a json file to store the offers data
 with open('stored_offers_data.json', 'w', encoding="utf-8") as data_file:

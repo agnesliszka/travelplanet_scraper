@@ -7,17 +7,10 @@ from parsel import Selector
 
 
 # Create required lists
-url_list = ['https://www.travelplanet.pl/wczasy/oferty/?kierunek=14:&wylot=26.04.2019&przylot=30.09.2019&osoby=2&dojazd=F&dzieci=2&wyzywienie=1&czas=6:8',
-            'https://www.travelplanet.pl/wczasy/oferty/grecja/2/?kierunek=14:&wylot=26.04.2019&przylot=30.09.2019&osoby=2&dzieci=2&czas=6:8&wyzywienie=1&dojazd=F&sortowanie=1&kolejnosc=up&limit=75',
-            'https://www.travelplanet.pl/wczasy/oferty/grecja/3/?kierunek=14:&wylot=26.04.2019&przylot=30.09.2019&osoby=2&dzieci=2&czas=6:8&wyzywienie=1&dojazd=F&sortowanie=1&kolejnosc=up&limit=75',
-            'https://www.travelplanet.pl/wczasy/oferty/grecja/4/?kierunek=14:&wylot=26.04.2019&przylot=30.09.2019&osoby=2&dzieci=2&czas=6:8&wyzywienie=1&dojazd=F&sortowanie=1&kolejnosc=up&limit=75',
-            'https://www.travelplanet.pl/wczasy/oferty/grecja/5/?kierunek=14:&wylot=26.04.2019&przylot=30.09.2019&osoby=2&dzieci=2&czas=6:8&wyzywienie=1&dojazd=F&sortowanie=1&kolejnosc=up&limit=75',
-            'https://www.travelplanet.pl/wczasy/oferty/grecja/6/?kierunek=14:&wylot=26.04.2019&przylot=30.09.2019&osoby=2&dzieci=2&czas=6:8&wyzywienie=1&dojazd=F&sortowanie=1&kolejnosc=up&limit=75',
-            'https://www.travelplanet.pl/wczasy/oferty/grecja/7/?kierunek=14:&wylot=26.04.2019&przylot=30.09.2019&osoby=2&dzieci=2&czas=6:8&wyzywienie=1&dojazd=F&sortowanie=1&kolejnosc=up&limit=75',
-            'https://www.travelplanet.pl/wczasy/oferty/grecja/8/?kierunek=14:&wylot=26.04.2019&przylot=30.09.2019&osoby=2&dzieci=2&czas=6:8&wyzywienie=1&dojazd=F&sortowanie=1&kolejnosc=up&limit=75',
-            'https://www.travelplanet.pl/wczasy/oferty/grecja/9/?kierunek=14:&wylot=26.04.2019&przylot=30.09.2019&osoby=2&dzieci=2&czas=6:8&wyzywienie=1&dojazd=F&sortowanie=1&kolejnosc=up&limit=75',
-            'https://www.travelplanet.pl/wczasy/oferty/grecja/10/?kierunek=14:&wylot=26.04.2019&przylot=30.09.2019&osoby=2&dzieci=2&czas=6:8&wyzywienie=1&dojazd=F&sortowanie=1&kolejnosc=up&limit=75',
-            'https://www.travelplanet.pl/wczasy/oferty/grecja/11/?kierunek=14:&wylot=26.04.2019&przylot=30.09.2019&osoby=2&dzieci=2&czas=6:8&wyzywienie=1&dojazd=F&sortowanie=1&kolejnosc=up&limit=75',
+url_list = ['https://www.travelplanet.pl/wczasy/oferty/?kierunek=15_176,15_93,15_2625,15_2635,15_55,15_50&wylot=26.04.2019&przylot=30.09.2019&osoby=2&czas=6:8&lotnisko=Katowice,Krakow&wyzywienie=1&dojazd=F&kategoria=301989888&grupy=1&dzieci=2&sortowanie=1&kolejnosc=up&limit=75',
+            '',
+            '',
+            '',
             ]
 links_data_list = []
 
