@@ -7,33 +7,18 @@ from parsel import Selector
 
 
 # Create required lists
-url_list = ['https://www.travelplanet.pl/wczasy/oferty/?kierunek=15_176,15_93,15_2625,15_2635,15_55,15_50&wylot=26.04.2019&przylot=30.09.2019&osoby=2&czas=6:8&lotnisko=Katowice,Krakow&wyzywienie=1&dojazd=F&kategoria=301989888&grupy=1&dzieci=2&sortowanie=1&kolejnosc=up&limit=75',
-            '',
-            '',
-            '',
+url_list = ['https://www.travelplanet.pl/wczasy/oferty/?kierunek=14:&wylot=26.04.2019&przylot=30.09.2019&osoby=2&dzieci=2&czas=6:8&wyzywienie=1&dojazd=F&sortowanie=1&kolejnosc=up&limit=75',
+            'https://www.travelplanet.pl/wczasy/oferty/2/?kierunek=14:&wylot=26.04.2019&przylot=30.09.2019&osoby=2&dzieci=2&czas=6:8&wyzywienie=1&dojazd=F&sortowanie=1&kolejnosc=up&limit=75',
+            'https://www.travelplanet.pl/wczasy/oferty/3/?kierunek=14:&wylot=26.04.2019&przylot=30.09.2019&osoby=2&dzieci=2&czas=6:8&wyzywienie=1&dojazd=F&sortowanie=1&kolejnosc=up&limit=75',
+            'https://www.travelplanet.pl/wczasy/oferty/4/?kierunek=14:&wylot=26.04.2019&przylot=30.09.2019&osoby=2&dzieci=2&czas=6:8&wyzywienie=1&dojazd=F&sortowanie=1&kolejnosc=up&limit=75',
+            'https://www.travelplanet.pl/wczasy/oferty/5/?kierunek=14:&wylot=26.04.2019&przylot=30.09.2019&osoby=2&dzieci=2&czas=6:8&wyzywienie=1&dojazd=F&sortowanie=1&kolejnosc=up&limit=75',
+            'https://www.travelplanet.pl/wczasy/oferty/6/?kierunek=14:&wylot=26.04.2019&przylot=30.09.2019&osoby=2&dzieci=2&czas=6:8&wyzywienie=1&dojazd=F&sortowanie=1&kolejnosc=up&limit=75',
+            'https://www.travelplanet.pl/wczasy/oferty/7/?kierunek=14:&wylot=26.04.2019&przylot=30.09.2019&osoby=2&dzieci=2&czas=6:8&wyzywienie=1&dojazd=F&sortowanie=1&kolejnosc=up&limit=75',
+            'https://www.travelplanet.pl/wczasy/oferty/8/?kierunek=14:&wylot=26.04.2019&przylot=30.09.2019&osoby=2&dzieci=2&czas=6:8&wyzywienie=1&dojazd=F&sortowanie=1&kolejnosc=up&limit=75',
+            'https://www.travelplanet.pl/wczasy/oferty/9/?kierunek=14:&wylot=26.04.2019&przylot=30.09.2019&osoby=2&dzieci=2&czas=6:8&wyzywienie=1&dojazd=F&sortowanie=1&kolejnosc=up&limit=75',
+            'https://www.travelplanet.pl/wczasy/oferty/10/?kierunek=14:&wylot=26.04.2019&przylot=30.09.2019&osoby=2&dzieci=2&czas=6:8&wyzywienie=1&dojazd=F&sortowanie=1&kolejnosc=up&limit=75',
             ]
 links_data_list = []
-
-# #Function to get links of pages where you can find links to the offers
-# def get_next_page_with_links():
-#     # Get page links where you can find offer links
-#     url = 'https://www.travelplanet.pl/wczasy/oferty/?kierunek=14:&wylot=26.04.2019&przylot=30.09.2019&osoby=2&dojazd=F&dzieci=2&wyzywienie=1&czas=6:8'
-#     for i in range(3):
-#         response = requests.get(url)
-#         content = response.text
-#         selector = Selector(text=content)
-#
-#         # Get next page url
-#         # next_page_url = selector.css('.btn-pagination ~ a::attr(href)').get()
-#         # next_page_url = selector.css(('a::attr(href)'))
-#         next_page_url = selector.css(('#pagination--top > a:nth-child(7)::attr(href)'))
-#         next_page_url = selector.css('#pagination--top > a:nth-child(7)')
-#         print(next_page_url)
-#         url_list.append(next_page_url)
-#         url = next_page_url
-#
-# # Get page links where you can find offer links
-# get_next_page_with_links()
 
 # Function to get offer links
 def get_links(url):
