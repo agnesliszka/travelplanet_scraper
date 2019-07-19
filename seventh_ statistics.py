@@ -19,42 +19,51 @@ def run_query(query, db):
         result = cursor.fetchall()
         return result
 
-# Define a query map
-QUERY_MAP = {
-    'ilosc_ofert': 'SELECT COUNT (*) FROM oferty_wakacyjne WHERE tresc_oferty LIKE "%piaszczyst%" AND tresc_oferty LIKE "%plaza%" AND tresc_oferty LIKE "%brodzik%";',
-    'dane_ofert': 'SELECT html FROM oferty_wakacyjne WHERE tresc_oferty LIKE "%piaszczyst%" AND tresc_oferty LIKE "%plaza%" AND tresc_oferty LIKE "%brodzik%";',
-    }
+# Keywords:
+keywords = []
+
+def add_keyword():
+    first_keyword = input("Input first keyword to be added to the list: ")
+    keywords.append(first_keyword)
+    second_keyword = input("Input second keyword to be added to the list: ")
+    keywords.append(second_keyword)
+    third_keyword = input("Input third keyword to be added to the list: ")
+    keywords.append(third_keyword)
+    print("The current list of keywords: " + str(keywords))
+    print("To input next keyword select 1 ")
+
+# my_key_words = ['brodzik', 'piaszczysta plaza', 'plac zabaw', 'menu dla dzieci', 'animacje dla dzieci']
 
 # Define a database path
 dirname = os.path.dirname(__file__)
 db_name = 'offers.db'
 path_to_db = os.path.join(dirname, db_name)
 
-ilosc_ofert = run_query(QUERY_MAP['ilosc_ofert'], path_to_db)
+def offers_data():
+    print(keywords)
 
-def dane_ofert():
-    ilosc_ofert = run_query(QUERY_MAP['ilosc_ofert'], path_to_db)
-    dane_ofert = run_query(QUERY_MAP['dane_ofert'], path_to_db)
-    print('ilosc_ofert: ' + str(ilosc_ofert))
-    print('dane_ofert: ' + str(dane_ofert))
+    QUERY_MAP = {
+        'number_of_offers': 'SELECT COUNT (*) FROM oferty_wakacyjne WHERE tresc_oferty LIKE "%{first}%" AND tresc_oferty LIKE "%{second}%" AND tresc_oferty LIKE "%{third}%";'.format(first=keywords[0], second=keywords[1], third=keywords[2]),
+        'offers_links': 'SELECT html FROM oferty_wakacyjne WHERE tresc_oferty LIKE "%{first}%" AND tresc_oferty LIKE "%{second}%" AND tresc_oferty LIKE "%{third}%";'.format(first=keywords[0], second=keywords[1], third=keywords[2]),
+    }
 
-# Key words:
-slowa_klucz = ['brodzik', 'piaszczysta plaza', 'plac zabaw', 'kacik dla dzieci', 'menu dla dzieci', 'animacje dla dzieci']
+    number_of_offers = run_query(QUERY_MAP['number_of_offers'], path_to_db)
+    offers_links = run_query(QUERY_MAP['offers_links'], path_to_db)
+    print('number of offers: ' + str(number_of_offers[0][0]))
+    print('offers links: ')
+    for link in offers_links:
+        print(link[0])
 
 # Create a menu representing available options
 def menu():
-    while True:
-        user_choice = input('''
-        Wybierz jedna z ponizszych opcji:         
-        1 - pokaz dane ofert 
-        2 - zakoncz program
-        ''')
-        if user_choice == "1":
-            dane_ofert()
-        elif user_choice == "2":
-            return
-        else:
-            print("Wybierz jeszcze raz odpowiedni numer opcji.")
+    users_input=input('''The program allows you to input three keywords that you want to find in the offers page.
+If you want to add a keyword press any key (except 'c'). To close the program input 'c' 
+''')
+    if users_input=="c":
+        return
+    else:
+        add_keyword()
+        offers_data()
     return
 
 # Run menu
